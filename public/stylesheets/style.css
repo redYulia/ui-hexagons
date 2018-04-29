@@ -1,0 +1,118 @@
+body {
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  background-color: #aaa; }
+
+h1 {
+  text-align: center;
+  font-size: 2.5em; }
+
+.hexagons_container {
+  padding: 50px; }
+  .hexagons_container .hexagons_row {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center; }
+    .hexagons_container .hexagons_row .hexagon_item {
+      position: relative; }
+      .hexagons_container .hexagons_row .hexagon_item:hover .hexagon,
+      .hexagons_container .hexagons_row .hexagon_item:hover .hexagon_shadow {
+        transform: rotateY(180deg); }
+        .hexagons_container .hexagons_row .hexagon_item:hover .hexagon::before, .hexagons_container .hexagons_row .hexagon_item:hover .hexagon::after,
+        .hexagons_container .hexagons_row .hexagon_item:hover .hexagon_shadow::before,
+        .hexagons_container .hexagons_row .hexagon_item:hover .hexagon_shadow::after {
+          cursor: default; }
+      .hexagons_container .hexagons_row .hexagon_item:hover .hexagon_content {
+        transform: rotateY(360deg);
+        opacity: 1; }
+    .hexagons_container .hexagons_row .hexagon_content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 86.6px;
+      position: absolute;
+      top: calc(50% - 43.3px);
+      left: 0;
+      z-index: 2;
+      color: #fff;
+      font-size: 2em;
+      opacity: 0;
+      transition: all ease-in-out 1s; }
+    .hexagons_container .hexagons_row .hexagon_wrapper {
+      height: 100%;
+      width: 150px;
+      margin: 26px 5px;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      backface-visibility: hidden; }
+      .hexagons_container .hexagons_row .hexagon_wrapper .hexagon_shadow {
+        width: 150px;
+        height: 86.6px;
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #555;
+        transition: transform ease 1s;
+        transform-style: inherit; }
+        .hexagons_container .hexagons_row .hexagon_wrapper .hexagon_shadow::before, .hexagons_container .hexagons_row .hexagon_wrapper .hexagon_shadow::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          left: 0;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-color: #555 transparent;
+          border-width: 43.3px 75px;
+          transform: rotateY(180deg);
+          transform-style: inherit;
+          backface-visibility: inherit; }
+        .hexagons_container .hexagons_row .hexagon_wrapper .hexagon_shadow::before {
+          top: -43.3px;
+          border-top: 0; }
+        .hexagons_container .hexagons_row .hexagon_wrapper .hexagon_shadow::after {
+          bottom: -43.3px;
+          border-bottom: 0; }
+      .hexagons_container .hexagons_row .hexagon_wrapper .hexagon {
+        width: 150px;
+        height: 86.6px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: 173.2px;
+        position: relative;
+        transition: transform ease 1s;
+        transform-style: inherit;
+        backface-visibility: inherit; }
+        .hexagons_container .hexagons_row .hexagon_wrapper .hexagon_rotate_1, .hexagons_container .hexagons_row .hexagon_wrapper .hexagon_rotate_2 {
+          overflow: hidden;
+          width: 100%;
+          height: 100%;
+          background: inherit;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1; }
+          .hexagons_container .hexagons_row .hexagon_wrapper .hexagon_rotate_1::before, .hexagons_container .hexagons_row .hexagon_wrapper .hexagon_rotate_2::before {
+            content: '';
+            background: inherit;
+            width: 173.2px;
+            height: 173.2px;
+            position: absolute;
+            top: -50%;
+            left: -11.6px; }
+        .hexagons_container .hexagons_row .hexagon_wrapper .hexagon_rotate_1 {
+          transform-origin: right top;
+          transform: translateY(86.6px) rotate(60deg); }
+          .hexagons_container .hexagons_row .hexagon_wrapper .hexagon_rotate_1::before {
+            transform: rotate(-60deg); }
+        .hexagons_container .hexagons_row .hexagon_wrapper .hexagon_rotate_2 {
+          transform: rotate(-60deg); }
+          .hexagons_container .hexagons_row .hexagon_wrapper .hexagon_rotate_2::before {
+            transform: rotate(60deg); }
+
+/*# sourceMappingURL=style.css.map */

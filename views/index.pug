@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1 Hexagons
+  .hexagons_container
+      - var k = 1;
+      - for (var i=1; i <= 4; i++) {
+          .hexagons_row(id = 'hexagons_row_' + i)
+              - var length = i%2===0 ? 3 : 4;
+              - for (var j = 0; j < length; j++) {
+              - var url = 'url(./../images/'+ k +'.jpg)';
+              - k++;
+                  .hexagon_item
+                      .hexagon_wrapper
+                          .hexagon(id = 'hexagon_' + j style={'background-image': url})
+                              .hexagon_rotate_1
+                              .hexagon_rotate_2
+                          .hexagon_shadow
+                      span.hexagon_content Hello!
+              - }
+      - }
+
+

@@ -1,0 +1,161 @@
+$base_font_size: 16px;
+$hexagon_size: 150px;
+$hexagon_height: 86.6px;
+$hexagon_image_size: $hexagon_height*2;
+$hexagon_shadow_color: #555;
+
+body {
+    font: $base_font_size "Lucida Grande", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    background-color: #aaa;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.hexagons_container {
+    padding: 50px;
+
+    .hexagons_row {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+        .hexagon_item {
+            position: relative;
+
+            &:hover .hexagon,
+            &:hover .hexagon_shadow {
+                transform: rotateY(180deg);
+
+                &::before,
+                &::after {
+                    cursor: default;
+                }
+            }
+
+            &:hover .hexagon_content {
+                transform: rotateY(360deg);
+                opacity: 1;
+            }
+        }
+
+        .hexagon_content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: $hexagon_height;
+            position: absolute;
+            top: calc(50% - #{$hexagon_height / 2});
+            left: 0;
+            z-index: 2;
+            color: #fff;
+            font-size: 2em;
+            opacity: 0;
+            transition: all ease-in-out 1s;
+        }
+
+        .hexagon_wrapper {
+            height: 100%;
+            width: $hexagon_size;
+            margin: 26px 5px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+
+            .hexagon_shadow {
+                width: $hexagon_size;
+                height: $hexagon_height;
+                z-index: -1;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: $hexagon_shadow_color;
+                transition: transform ease 1s;
+                transform-style: inherit;
+
+                &::before,
+                &::after {
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    left: 0;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-color: $hexagon_shadow_color transparent;
+                    border-width: $hexagon_height / 2 $hexagon_size / 2;
+                    transform: rotateY(180deg);
+                    transform-style: inherit;
+                    backface-visibility: inherit;
+                }
+                &::before {
+                    top: -($hexagon_height / 2);
+                    border-top: 0;
+                }
+
+                &::after {
+                    bottom: -($hexagon_height / 2);
+                    border-bottom: 0;
+                }
+            }
+
+            .hexagon {
+                width: $hexagon_size;
+                height: $hexagon_height;
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
+                background-size: $hexagon_image_size;
+                position: relative;
+                transition: transform ease 1s;
+                transform-style: inherit;
+                backface-visibility: inherit;
+
+                &_rotate_1,
+                &_rotate_2 {
+                    overflow: hidden;
+                    width: 100%;
+                    height: 100%;
+                    background: inherit;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: -1;
+
+                    &::before {
+                        content: '';
+                        background: inherit;
+                        width: $hexagon_image_size;
+                        height: $hexagon_image_size;
+                        position: absolute;
+                        top: -50%;
+                        left: ($hexagon_size - $hexagon_image_size) / 2;
+                    }
+                }
+
+                &_rotate_1 {
+                    transform-origin: right top;
+                    transform: translateY($hexagon_height) rotate(60deg);
+
+                    &::before {
+                        transform: rotate(-60deg);
+                    }
+                }
+
+                &_rotate_2 {
+                    transform: rotate(-60deg);
+
+                    &::before {
+                        transform: rotate(60deg);
+                    }
+                }
+            }
+        }
+    }
+}
